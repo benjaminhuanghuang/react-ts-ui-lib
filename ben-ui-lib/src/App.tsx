@@ -7,7 +7,8 @@ function App() {
     <div className="App">
       <Button disabled >Default</Button>
       <Button btnType='primary'>Primary</Button>
-      <Button btnType='link' href="http://google.com">Google</Button>
+      <Button btnType='link' href="http://google.com">Link</Button>
+      <Button btnType='link' href="http://google.com" disabled>DisabledLink</Button>
 
     </div>
   );
