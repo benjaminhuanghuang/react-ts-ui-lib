@@ -26,3 +26,14 @@ Include Button/_style.scss into styles/index.scss
 ```
 @import "../components/Button/style";
 ```
+
+4. Support native properties
+```
+  // Intersection types
+  // Provide native properties, like OnClick 
+  type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
+  type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
+
+  // make all fields optional because some property exist on anchor but not on button
+  export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
+```
