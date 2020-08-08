@@ -1,38 +1,47 @@
-import React from 'react'
+import React from "react";
+import classNames from "classnames";
 
-
-
-export type ButtonSize = 'lg' | 'sm'
-export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
+export type ButtonSize = "lg" | "sm";
+export type ButtonType = "primary" | "default" | "danger" | "link";
 
 interface BaseButtonProps {
   className?: string;
   disabled?: boolean;
   size?: ButtonSize;
   btnType?: ButtonType;
-  children: React.ReactNode;
+  // children: React.ReactNode;
   href?: string;
 }
 
-
 const Button: React.FC<BaseButtonProps> = (props) => {
-  const { 
-    btnType,
-    className,
-    disabled,
-    size,
-    children,
-    href,
-    ...restProps
-  } = props
+  const { btnType, className, disabled, size, children, href, ...restProps } = props;
 
-  return (
-    <div>
-           
-    </div>
-  )
-}
+  // btn, add btn-lg when size was passed , add btn-primary when type was passed
+  // link buttong disable 需要特殊处理, 因为 <a> 本身没有disabled 属性
+  const classes = classNames("btn", className, {
+    [`btn-${btnType}`]: btnType,
+    [`btn-${size}`]: size,
+    disabled: btnType === "link" && disabled,
+  });
 
-export default Button
+  if (btnType === "link" && href) {
+    return (
+      <a className={classes} href={href} {...restProps}>
+        {children}
+      </a>
+    );
+  } else {
+    return (
+      <button className={classes} disabled={disabled} {...restProps}>
+        {children}
+      </button>
+    );
+  }
+};
 
+Button.defaultProps = {
+  disabled: false,
+  btnType: "default",
+};
 
+export default Button;

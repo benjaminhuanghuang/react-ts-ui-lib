@@ -1,11 +1,14 @@
-import React from 'react';
+import React from "react";
 
+// Test
+import Button, { ButtonSize, ButtonType } from "./components/Button/button";
 function App() {
   return (
     <div className="App">
-      <h1>H1</h1>
-      <h2>H1</h2>
-      <h3>H1</h3>
+      <Button disabled >Default</Button>
+      <Button btnType='primary'>Primary</Button>
+      <Button btnType='link' href="http://google.com">Google</Button>
+
     </div>
   );
 }

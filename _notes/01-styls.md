@@ -15,11 +15,14 @@ add colors into style/_variables.scss
 - 边框
 - 按钮
 
-## compatibility
+## Compatibility
 - Use normalize.css
   
   copy content to _reboot.scss
 
+```
+npx node-sass styles/_variableds.scss  vaer.css      # complie parital file start with "_" will create empty file
+```
 _reboot.scss and _variables.scss are **partial scss**, 只可以import， 不能编译成css
 
 ## Procsss class
