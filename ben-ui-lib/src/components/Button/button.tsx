@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
 import classNames from "classnames";
 
 export type ButtonSize = "lg" | "sm";
@@ -12,6 +12,13 @@ interface BaseButtonProps {
   // children: React.ReactNode;
   href?: string;
 }
+// Intersection types
+// Provide native properties, like OnClick 
+type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
+type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
+
+// make all fields optional because some property exist on anchor but not on button
+export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
 const Button: React.FC<BaseButtonProps> = (props) => {
   const { btnType, className, disabled, size, children, href, ...restProps } = props;
