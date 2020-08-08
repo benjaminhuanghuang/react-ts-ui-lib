@@ -10,7 +10,9 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "classnames": "^2.2.6",
+    "@types/classnames": "^2.2.10"
   },
   "scripts": {
     "start": "PORT=3721 react-scripts start",
