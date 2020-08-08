@@ -20,3 +20,9 @@ children: React.ReactNode;
 
 
 3. 添加css
+Create Button/_style.scss
+
+Include Button/_style.scss into styles/index.scss
+```
+@import "../components/Button/style";
+```
