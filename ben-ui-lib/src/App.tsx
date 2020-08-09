@@ -3,8 +3,11 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 import {fas} from '@fortawesome/free-solid-svg-icons'   // import all icons
 // Test
 import Button, { ButtonSize, ButtonType } from "./components/Button/button";
+
 import Menu from "./components/Menu/menu";
 import MenuItem from "./components/Menu/menuItem";
+import SubMenu from "./components/Menu/subMenu";
+
 import Icon from "./components/Icon/icon";
 
 
@@ -19,17 +22,17 @@ function App() {
         onSelect={(index) => {
           alert(index);
         }}
-        mode="vertical"
+        // mode="vertical"
         defaultOpenSubMenus={["2"]}
       >
         <MenuItem index="0">Cool link</MenuItem>
         <MenuItem disabled index="1">
           Cool link 2
         </MenuItem>
-        {/* <SubMenu title="dropdown">
+        <SubMenu title="dropdown">
           <MenuItem>dropdown 1</MenuItem>
           <MenuItem>dropdown 2</MenuItem>
-        </SubMenu> */}
+        </SubMenu>
         <MenuItem index="2">Cool link 3</MenuItem>
       </Menu>
 

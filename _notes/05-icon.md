@@ -7,7 +7,7 @@
 ```
 
 ## 二次封装，加入颜色
+Using scss map and foreach to add theme for icons
 
 
-
-## scss map and foreach
+## Add icon to menu
