@@ -70,6 +70,7 @@ export const Menu: FC<MenuProps> = (props) => {
   };
 
   return (
+    // data-testid="test-menu"  for testing 
     <ul className={classes} style={style} data-testid="test-menu">
       {/* Pass context object to children */}
       <MenuContext.Provider value={passedContext}>{renderChildren()}</MenuContext.Provider>

@@ -16,7 +16,7 @@ function App() {
           <MenuItem>dropdown 1</MenuItem>
           <MenuItem>dropdown 2</MenuItem>
         </SubMenu> */}
-        <MenuItem disabled index="2">Cool link 3</MenuItem>
+        <MenuItem index="2">Cool link 3</MenuItem>
       </Menu>
 
       <Button disabled >Default</Button>

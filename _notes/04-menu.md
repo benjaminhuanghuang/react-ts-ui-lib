@@ -20,3 +20,12 @@ type MenuMode = 'horizontal' | 'vertical'
 
 3. Add style
 use flex box for layout
+
+
+4. menu UT
+```
+ async () => {
+  await wait(() => {
+    expect(wrapper.queryByText('drop1')).toBeVisible()
+  })
+```
