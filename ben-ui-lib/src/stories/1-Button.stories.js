@@ -16,3 +16,9 @@ export const Emoji = () => (
     </span>
   </Button>
 );
+
+export const myButton = () => (
+  <Button onClick={action('clicked')}>
+   This is my button
+  </Button>
+)
