@@ -1,0 +1,20 @@
+1. Menu Design
+- Menu mode: vertical, horizontal
+
+- Button size
+
+- Enable / Disable
+  
+- Has html conent
+
+- Support html props
+
+2. 实现基本属性
+- menu mode 
+Use string literal type
+```
+type MenuMode = 'horizontal' | 'vertical'
+```
+
+- Use context pass menu state to menuItem
+
