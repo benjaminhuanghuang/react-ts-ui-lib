@@ -18,3 +18,5 @@ type MenuMode = 'horizontal' | 'vertical'
 
 - Use context pass menu state to menuItem
 
+3. Add style
+use flex box for layout

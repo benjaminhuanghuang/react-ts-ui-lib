@@ -34,7 +34,7 @@ export const Menu: FC<MenuProps> = (props) => {
   // set active menu item
   const [currentActive, setActive] = useState(defaultIndex);
 
-  const classes = classNames("viking-menu", className, {
+  const classes = classNames("menu", className, {
     "menu-vertical": mode === "vertical",
     "menu-horizontal": mode !== "vertical",
   });
