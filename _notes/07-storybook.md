@@ -28,3 +28,5 @@ Modify ./storybook/main.js
 ```
   stories: ['../src/**/*.stories.tsx'],
 ```
+
+## include scss in ./storybook/config.ts
