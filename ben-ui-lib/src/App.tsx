@@ -1,6 +1,6 @@
-import React from "react";
-import {library} from '@fortawesome/fontawesome-svg-core'
-import {fas} from '@fortawesome/free-solid-svg-icons'   // import all icons
+import React, { useState } from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons"; // import all icons
 // Test
 import Button, { ButtonSize, ButtonType } from "./components/Button/button";
 
@@ -10,10 +10,13 @@ import SubMenu from "./components/Menu/subMenu";
 
 import Icon from "./components/Icon/icon";
 
+import Transition from "./components/Transition/transition";
 
-library.add(fas)
+library.add(fas);
 
 function App() {
+  const [show, setShow] = useState(true);
+
   return (
     <div className="App">
       <Icon icon="coffee" theme="danger" size="10x" />
@@ -49,6 +52,18 @@ function App() {
       <Button btnType="link" href="http://google.com" disabled>
         DisabledLink
       </Button>
+
+      <Button size="lg" onClick={() => setShow(!show)}>
+        Transition Demo
+      </Button>
+
+      <Transition in={show} timeout={300} animation="zoom-in-left">
+        <div>
+          <p>Transition Test</p>
+          <p>Transition Test</p>
+          <p>Transition Test</p>
+        </div>
+      </Transition>
     </div>
   );
 }

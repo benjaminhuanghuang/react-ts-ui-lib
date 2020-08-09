@@ -29,3 +29,22 @@ For vertical mode
     transform: rotate(180deg) !important;
   }
 ```
+## Use react-transition-group
+```
+  npm install react-transition-group -S
+  npm install @types/react-transition-group -S
+```
+
+```
+  <CSSTransition>
+
+  </CSSTransition>
+```
+
+## add CSS for animation
+reference  Animate.css
+-  
+
+
+## Create Transition Component
+

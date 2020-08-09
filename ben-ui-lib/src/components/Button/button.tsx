@@ -20,7 +20,7 @@ type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
 // make all fields optional because some property exist on anchor but not on button
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
-const Button: React.FC<BaseButtonProps> = (props) => {
+const Button: React.FC<ButtonProps> = (props) => {
   const { btnType, className, disabled, size, children, href, ...restProps } = props;
 
   // btn, add btn-lg when size was passed , add btn-primary when type was passed
