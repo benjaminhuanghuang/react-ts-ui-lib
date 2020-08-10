@@ -19,4 +19,6 @@
   }
 ```
 
+5. Loading Icon
 
+6. 函数防抖 debounce
