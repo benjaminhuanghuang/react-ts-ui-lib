@@ -25,3 +25,9 @@
 
 7. keyboard
 
+8. 区别input change的来源
+ bug: input 和 select item都会触发search
+
+ Use useRef
+
+9. close dropdown

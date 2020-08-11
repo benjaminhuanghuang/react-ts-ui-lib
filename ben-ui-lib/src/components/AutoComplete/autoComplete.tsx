@@ -1,11 +1,13 @@
-import React, { FC, useState, useEffect, ChangeEvent, KeyboardEvent, ReactElement } from "react";
+import React, { FC, useState, useEffect, useRef, ChangeEvent, KeyboardEvent, ReactElement } from "react";
 import classNames from "classnames";
 //
 import Input, { InputProps } from "../Input/input";
 import Icon from "../Icon/icon";
 import useDebounce from "../../hooks/useDebounce";
+import useClickOutside from "../../hooks/useClickOutside";
 
-interface DataSourceObject {
+
+interface DataSourceObject { 
   value: string;
 }
 
@@ -26,11 +28,17 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const [loading, setLoading] = useState(false);
   const debouncedValue = useDebounce(inputValue, 500);
 
-  //keyboard
+  // keyboard
   const [highlightIndex, setHighlightIndex] = useState(-1);
+  const triggerSearch = useRef(false)
 
+  // close dropdown when click outside
+  const componentRef = useRef<HTMLDivElement>(null)
+  useClickOutside(componentRef, ()=> setSuggestions([]))
+  
+  // search
   useEffect(() => {
-    if (debouncedValue) {
+    if (debouncedValue && triggerSearch.current) {
       const results = fetchSuggestions(debouncedValue);
       if (results instanceof Promise) {
         setLoading(true);
@@ -47,9 +55,11 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     setHighlightIndex(-1);
   }, [debouncedValue]);
 
+  // handle user input
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
     setInputValue(value);
+    triggerSearch.current = false;
   };
 
   const highlight = (index: number) => {
@@ -109,17 +119,18 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     if (onSelect) {
       onSelect(item);
     }
+    triggerSearch.current = true;
   };
 
   return (
-    <div className="viking-auto-complete">
+    <div className="viking-auto-complete" ref={componentRef}>
       <Input value={inputValue} {...restProps} onChange={handleChange} onKeyDown={handleKeyDown} />
       {loading && (
         <ul>
           <Icon icon="spinner" spin />
         </ul>
       )}
-      {suggestions.length > 0 && generateDropdown()}
+      {suggestions.length > 0 && generateDropdown()} 
     </div>
   );
 };
