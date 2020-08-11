@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect, ChangeEvent, ReactElement } from "react";
+import React, { FC, useState, useEffect, ChangeEvent, KeyboardEvent, ReactElement } from "react";
+import classNames from "classnames";
 //
 import Input, { InputProps } from "../Input/input";
 import Icon from "../Icon/icon";
@@ -25,6 +26,9 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const [loading, setLoading] = useState(false);
   const debouncedValue = useDebounce(inputValue, 500);
 
+  //keyboard
+  const [highlightIndex, setHighlightIndex] = useState(-1);
+
   useEffect(() => {
     if (debouncedValue) {
       const results = fetchSuggestions(debouncedValue);
@@ -40,12 +44,41 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     } else {
       setSuggestions([]);
     }
+    setHighlightIndex(-1);
   }, [debouncedValue]);
-
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
     setInputValue(value);
+  };
+
+  const highlight = (index: number) => {
+    if (index < 0) index = 0;
+    if (index >= suggestions.length) {
+      index = suggestions.length - 1;
+    }
+    setHighlightIndex(index);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    switch (e.keyCode) {
+      case 13: //enter
+        if (suggestions[highlightIndex]) {
+          handleSelect(suggestions[highlightIndex]);
+        }
+        break;
+      case 38: // up
+        highlight(highlightIndex - 1);
+        break;
+      case 40: // down
+        highlight(highlightIndex + 1);
+        break;
+      case 27: // Esc
+        setSuggestions([]);
+        break;
+      default:
+        break;
+    }
   };
 
   const renderTemplate = (item: DataSourceType) => {
@@ -55,11 +88,17 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const generateDropdown = () => {
     return (
       <ul>
-        {suggestions.map((item, index) => (
-          <li key={index} onClick={() => handleSelect(item)}> 
-            {renderTemplate(item)}
-          </li>
-        ))}
+        {suggestions.map((item, index) => {
+          const cnames = classNames("suggesion-item", {
+            "item-hightlighted": index === highlightIndex,
+          });
+
+          return (
+            <li key={index} className={cnames} onClick={() => handleSelect(item)}>
+              {renderTemplate(item)}
+            </li>
+          );
+        })}
       </ul>
     );
   };
@@ -74,7 +113,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
 
   return (
     <div className="viking-auto-complete">
-      <Input value={inputValue} {...restProps} onChange={handleChange} />
+      <Input value={inputValue} {...restProps} onChange={handleChange} onKeyDown={handleKeyDown} />
       {loading && (
         <ul>
           <Icon icon="spinner" spin />
