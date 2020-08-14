@@ -13,6 +13,7 @@ jest.mock('../Icon/icon', () => {
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
 
+// test config
 const testProps: UploadProps = {
   action: "fakeurl.com",
   onSuccess: jest.fn(),
@@ -28,6 +29,7 @@ describe('test upload component', () => {
     fileInput = wrapper.container.querySelector('.viking-file-input')
     uploadArea = wrapper.queryByText('Click to upload')
   })
+  
   it('upload process should works fine', async () => {
     const { queryByText } = wrapper
     // mockedAxios.post.mockImplementation(() => {
@@ -55,6 +57,7 @@ describe('test upload component', () => {
       name: 'test.png'
     }))
   })
+
   it('drag and drop files should works fine', async () => {
     fireEvent.dragOver(uploadArea)
     expect(uploadArea).toHaveClass('is-dragover')
