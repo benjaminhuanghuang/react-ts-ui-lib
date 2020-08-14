@@ -18,3 +18,9 @@
 
 
 
+## customise header
+
+## customize input properties
+  file type, cookie
+
+## Drag-drop

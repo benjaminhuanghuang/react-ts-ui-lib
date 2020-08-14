@@ -123,7 +123,8 @@ export const Upload: FC<UploadProps> = (props) => {
       percent: 0,
       raw: file,
     };
-    //setFileList([_file, ...fileList])
+    //setFileList([_file, ...fileList]) 
+    // post 会被多次调用，直接更新只能得到最后一个file
     setFileList((prevList) => {
       return [_file, ...prevList];
     });
